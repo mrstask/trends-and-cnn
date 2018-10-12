@@ -1,12 +1,10 @@
 import feedparser
+from trends_parse import data
 
 
-with open('trends.txt', 'r') as f:
-    trends_data = f.read().splitlines()
 d = feedparser.parse('http://rss.cnn.com/rss/edition_entertainment.rss')
 for entry in d['entries']:
-    for item in trends_data:
+    for item in data:
         if item.lower() in entry['title'].lower():
             print(entry['title'])
             print(entry['summary'].split('<img')[0])
-

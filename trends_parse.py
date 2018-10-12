@@ -17,8 +17,6 @@ async def main():
             data.add(title.strip().lower())
 
     await browser.close()
-    with open('trends.txt', 'w') as f:
-        for item in data:
-            f.write(f'{item}\n')
+    return list(data)
 
-asyncio.run(main())
+data = asyncio.run(main())
