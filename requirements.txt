@@ -1,2 +1,6 @@
+aiohttp==3.4.4
+aiohttp-jinja2==1.1.0
 feedparser==5.2.1
+Jinja2==2.10
 pyppeteer==0.0.25
+
