@@ -17,6 +17,8 @@ topics = {'business': ['http://rss.cnn.com/rss/money_news_international.rss',
                           ]
           }
 
+result = list()
+
 
 async def trends_parse(cat_queue):
     cat_queue = await cat_queue.get()
@@ -42,7 +44,6 @@ async def trends_parse(cat_queue):
 def feed_parse(trends_data, topic_urls):
     feed_url = topic_urls[trends_data[0]][0]
     d = feedparser.parse(feed_url)
-
     for entry in d['entries']:
         for item in trends_data[1]:
             if item.lower() in entry['title'].lower():
@@ -52,9 +53,11 @@ def feed_parse(trends_data, topic_urls):
                 parse_result['link'] = entry['link']
                 parse_result['published'] = entry['published']
                 parse_result['category'] = trends_data[0]
+                print(parse_result)
+                result.append(parse_result)
 
-                with open('result.txt', 'a') as f:
-                    f.write(json.dumps(parse_result)+'\n')
+    with open('result.txt', 'w') as f:
+        f.write(json.dumps(result))
 
 
 async def main(topics_data):
@@ -69,4 +72,5 @@ async def main(topics_data):
 
     await asyncio.gather(*tasks)
 
-asyncio.run(main(topics))
+if __name__ == '__main__':
+    asyncio.run(main(topics))

@@ -10,8 +10,10 @@ app = web.Application()
 async def main(request):
     parsed_data = list()
     with open('result.txt') as f:
-        for line in f:
-            file = json.loads(line)
+        data = f.read()
+        for file in json.loads(data):
+            print(file)
+            print([file['title'], file['summary'], file['link'], file['published'], file['category']])
             parsed_data.append([file['title'], file['summary'], file['link'], file['published'], file['category']])
     context = {'data': parsed_data}
     response = aiohttp_jinja2.render_template('index.html', request, context)
