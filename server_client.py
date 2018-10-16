@@ -4,9 +4,7 @@ from aiohttp import web
 import feedparser
 from pyppeteer import launch
 
-topics = {'business': ['http://rss.cnn.com/rss/money_news_international.rss',
-                       'https://trends.google.com/trends/trendingsearches/realtime?geo=US&category=b'],
-          'sport': ['http://rss.cnn.com/rss/edition_sport.rss',
+topics = {'sport': ['http://rss.cnn.com/rss/edition_sport.rss',
                     'https://trends.google.com/trends/trendingsearches/realtime?geo=US&category=s'],
           'top': ['http://rss.cnn.com/rss/edition.rss',
                   'https://trends.google.com/trends/trendingsearches/realtime?geo=US&category=h'
